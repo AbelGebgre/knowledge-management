@@ -1,0 +1,46 @@
+<a id="layout-config-button" (click)="active=true;" class="layout-config-button" style="cursor: pointer;">
+    <i class="pi pi-cog"></i>
+</a>
+<div class="layout-config" [ngClass]="{'layout-config-active': active}" (mouseleave)="active=false;">
+    <div [ngClass]="{'d-none':mobile}">
+        <h5>Menu Type</h5>
+        <div class="p-field-radiobutton">
+            <p-radioButton name="layout" class="shadow-none" value="horizontal" [(ngModel)]="layout" (onClick)="onLayoutChange()" inputId="layout1"></p-radioButton>
+            <label for="layout1">Horizontal</label>
+        </div>
+        <div class="p-field-radiobutton">
+            <p-radioButton name="layout" class="shadow-none" value="sidebar" [(ngModel)]="layout" (onClick)="onLayoutChange()" inputId="layout2"></p-radioButton>
+            <label for="layout2">Sidebar</label>
+        </div>
+        <div class="p-field-radiobutton">
+            <p-radioButton name="layout" class="shadow-none" value="slim" [(ngModel)]="layout" (onClick)="onLayoutChange()" inputId="layout3"></p-radioButton>
+            <label for="layout3">Slim</label>
+        </div><hr>
+    </div>
+   
+    <h5>Color Scheme</h5>
+    <div class="p-field-radiobutton">
+        <p-radioButton name="colorScheme" class="shadow-none" value="light" [(ngModel)]="colorScheme" (onClick)="onColorSchemeChange()" inputId="colorScheme1"></p-radioButton>
+        <label for="colorScheme1">Light</label> <span style="padding: 10px;"></span>
+        <p-radioButton name="colorScheme" class="shadow-none" value="dark" [(ngModel)]="colorScheme" (onClick)="onColorSchemeChange()" inputId="colorScheme1"></p-radioButton>
+        <label for="colorScheme1">Dark</label>
+    </div><hr>
+    <div class="ng-star-inserted">
+        <h5>Topbar Mode </h5>
+        <div class="p-field-radiobutton">
+            <p-radioButton name="topbarTheme" class="shadow-none" value="light" [(ngModel)]="topbarTheme" (onClick)="onTopBarThemeChange()" inputId="topbarTheme1"></p-radioButton>
+            <label for="topbarTheme1">Light</label> <span style="padding: 10px;"></span>
+            <p-radioButton name="topbarTheme" class="shadow-none" value="dark" [(ngModel)]="topbarTheme" (onClick)="onTopBarThemeChange()" inputId="topbarTheme2"></p-radioButton>
+            <label for="topbarTheme2">Dark</label>
+        </div><hr>
+    </div>
+    <div class="ng-star-inserted">
+        <h5>Menu Mode </h5>
+        <div class="p-field-radiobutton">
+            <p-radioButton name="menuTheme" class="shadow-none" value="light" [(ngModel)]="menuTheme" (onClick)="onMenuThemeChange()" inputId="menuTheme1"></p-radioButton>
+            <label for="menuTheme1">Light</label> <span style="padding: 10px;"></span>
+            <p-radioButton name="menuTheme" class="shadow-none" value="dark" [(ngModel)]="menuTheme" (onClick)="onMenuThemeChange()" inputId="menuTheme2"></p-radioButton>
+            <label for="menuTheme2">Dark</label>
+        </div><hr>
+    </div>       
+</div>

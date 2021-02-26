@@ -1,0 +1,44 @@
+<div class="login-container">
+  <section class="container">
+    <div class="e-card login-card">
+      <div class="e-card-header">
+        <div class="e-card-header-caption">
+          <div class="e-card-title">Login</div>
+        </div>
+      </div>
+      <div class="e-card-content">
+        <form [formGroup]="form">
+          <div class="row">
+            <ejs-textbox class="full-width"
+                         floatLabelType="Auto"
+                         placeholder="Email"
+                         type="email"
+                         formControlName="email"></ejs-textbox>
+            <div *ngIf="displayMessage.email" class="e-error">{{ displayMessage.email }}</div>
+          </div>
+          <div class="row">
+            <ejs-textbox class="full-width"
+                         floatLabelType="Auto"
+                         placeholder="Password"
+                         type="password"
+                         formControlName="password"></ejs-textbox>
+            <div *ngIf="displayMessage.password" class="e-error">{{ displayMessage.password }}</div>
+          </div>
+        </form>
+        <div class="error">{{ error }}</div>
+      </div>
+      <div class="e-card-separator"></div>
+      <div class="e-card-actions">
+        <button ejs-button
+                cssClass="e-info"
+                iconCss="e-icons e-play"
+                (click)="onSubmit()">Login</button>&nbsp;
+        <button ejs-button
+                cssClass="e-warning"
+                iconCss="e-icons e-cross-close"
+                (click)="onReset()">Reset</button>
+
+      </div>
+    </div>
+  </section>
+</div>

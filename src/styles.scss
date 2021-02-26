@@ -1,1 +1,40 @@
 /* You can add global styles to this file, and also import other style files */
+@import "../node_modules/bootstrap/dist/css/bootstrap.css";
+@import "../node_modules/primeicons/primeicons.css";
+// @import "./assets/styles.css";
+@import "../node_modules/primeng/resources/primeng.min.css";
+@import "../node_modules/quill/dist/quill.snow.css";
+@import "../node_modules/primeflex/primeflex.css";
+
+// @import "./assets/layout-light.css";
+// @import "./assets/theme-light.css";
+
+// @import "./assets/layout-dark.css";
+// @import "./assets/theme-dark.css";
+
+// @mixin lightTheme {
+//   @import "./assets/layout-light.css";
+//   @import "./assets/theme-light.css";
+// }
+// @mixin darkTheme {
+//   @import "./assets/layout-dark.css";
+//   @import "./assets/theme-dark.css";
+// }
+
+// @mixin theme($color: "light") {
+//   @if $color == "light" {
+//     @include lightTheme;
+//   } @else {
+//     @include darkTheme;
+//   }
+// }
+@import "./assets/layout-light.css";
+@import "./assets/theme-light.css";
+.light {
+  @import "./assets/layout-light.css";
+  @import "./assets/theme-light.css";
+}
+.dark {
+  @import "./assets/layout-dark.css";
+  @import "./assets/theme-dark.css";
+}

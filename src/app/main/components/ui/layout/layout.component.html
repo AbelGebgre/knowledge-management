@@ -1,0 +1,121 @@
+
+<div dir='{{colorScheme}}' class="layout-wrapper layout-menu-{{menuTheme}} layout-topbar-{{topbarTheme}} layout-{{layout}}"
+        [ngClass]="{'layout-static': static && layout=='sidebar','layout-mobile-active':mobileMenu, 
+                    'light':colorScheme=='light', 'dark':colorScheme=='dark'}" >
+    <div class="layout-topbar">
+        <div class="layout-topbar-wrapper" (mouseleave)="mobileView(false)">
+            <div class="layout-topbar-left">
+                <a tabindex="0" style="cursor: pointer;" class="menu-button shadow-none" (click)="mobileView(!mobileMenu)">
+                    <i class="pi pi-bars shadow-none"></i>
+                </a>
+                <a tabindex="0" id="logo-link" class="layout-topbar-logo">
+                    <img alt="freya-layout" src="assets/image/logo-freya-single.svg">
+                </a> 
+            </div>
+            <div class="menu-wrapper" [ngClass]="{'layout-sidebar-active': activeSidebar && layout=='sidebar'}" (mouseenter)="activeSidebar=true;" 
+            (mouseleave)="activeSidebar=false;">
+                <div class="sidebar-logo">
+                    <a routerLink="/">
+                        <img src="assets/image/logo-freya-single.svg" alt="freya-layout">
+                    </a>
+                    <a class="sidebar-pin" (click)="pin()">
+                        <span class="pin"></span>
+                    </a>
+                </div>
+                <div class="layout-menu-container">
+                    <ul class="layout-menu" >
+                        <li app-menuitem #lii routerLinkActive="active-menuitem" *ngFor="let menu of menus; let i = index;">
+                            <a *ngIf="!menu.collapse" pripple class="p-ripple" (mouseover)="toggle(lii)" routerLink="{{menu.link}}"
+                                (click)="onclick(lii,'menu')" tabindex="0" style="cursor: pointer; text-decoration: none;">
+                                <i class="layout-menuitem-icon pi pi-{{menu.icon}}"></i>
+                                <span class="layout-menuitem-text">{{menu.label}}</span>
+                                <span class="p-ink"></span>
+                            </a>
+                            <a *ngIf="menu.collapse" pripple class="p-ripple" (mouseover)="toggle(lii)"
+                                (click)="onclick(lii,'menu')" tabindex="0" style="cursor: pointer; text-decoration: none;">
+                                <i class="layout-menuitem-icon pi pi-{{menu.icon}}"></i>
+                                <span class="layout-menuitem-text">{{menu.label}}</span>
+                                <i class="pi pi-fw pi-chevron-down layout-submenu-toggler"></i>
+                                <span class="p-ink"></span>
+                            </a>
+                            <div class="layout-menu-tooltip">
+                                <div class="layout-menu-tooltip-arrow"></div>
+                                <div class="layout-menu-tooltip-text">{{menu.label}}</div>
+                            </div>
+                            <ul *ngIf="menu.collapse" role="menu" [ngClass]="{'d-none': getRouter(menu.routers)}"
+                                routerLinkActive="ng-trigger ng-trigger-children ng-star-inserted ng-animating">
+                                <li *ngFor="let item of menu.item" app-menuitem routerLinkActive="active-menuitem">
+                                    <a routerlinkactive="active-route" pripple class="p-ripple" tabindex="0" style="cursor: pointer; text-decoration: none;" routerLink="{{item.link}}" >
+                                        <i class="layout-menuitem-icon {{item.icon}}"></i>
+                                        <span class="layout-menuitem-text">{{item.label}}</span>
+                                        <span class="p-ink"></span>
+                                    </a>
+                                    <div class="layout-menu-tooltip"><div class="layout-menu-tooltip-arrow"></div>
+                                        <div class="layout-menu-tooltip-text">{{item.label}}</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="layout-topbar-right" (click)="onclick($event,'right')">
+                <ul class="layout-topbar-actions">
+                    <li class="topbar-item search-item" [ngClass]="{'active-topmenuitem':search}">
+                        <a tabindex="0" style="cursor: pointer;" (click)="search=true" style="cursor: pointer;"><i class="topbar-icon pi pi-search shadow-none"></i></a>
+                        <div class="search-input-wrapper">
+                            <span class="p-input-icon-left">
+                                <i class="pi pi-search"></i>
+                                <input type="text" pinputtext placeholder="Search..." class="p-inputtext p-component shadow-none">
+                            </span>
+                        </div>
+                        <ul class="fadeInDown">
+                            <div class="search-input-wrapper p-fluid" style="width: 100%;">
+                                <span class="p-input-icon-left">
+                                    <i class="pi pi-search"></i>
+                                    <input type="text" pinputtext placeholder="Search..." class="p-inputtext p-component shadow-none">
+                                </span>
+                            </div>
+                        </ul>
+                    </li>
+                    <li class="topbar-item user-profile">
+                        <a style="cursor: pointer;"><img src="assets/image/avatar-profilemenu.png" alt="freya-layout">
+                        </a>
+                        <ul class="fadeInDown">
+                            <li><a style="cursor: pointer;"><span>Profile</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a style="cursor: pointer;">
+                                <span>Settings</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a style="cursor: pointer;">
+                                <span>Messages</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a style="cursor: pointer;">
+                                <span>Notifications</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                </ul>
+            </div>
+        </div>
+    </div> 
+    <app-config  (onlayout)="layoutChange($event)"
+                (onmenuTheme)="menuThemeChange($event)"
+                (ontopbarTheme)="topbarThemeChange($event)"
+                (oncolorScheme)="colorSchemeChange($event)"
+                [static]="static" ></app-config>
+    <div class="layout-main" (click)="search=false; onclick($event,'body')">
+        <div class="layout-content">
+            <router-outlet></router-outlet>
+        </div>
+        <app-footer></app-footer>
+        <div class="layout-mask modal-in"></div>
+    </div>
+</div>
