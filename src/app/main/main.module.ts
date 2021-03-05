@@ -10,11 +10,11 @@ import { ConfigComponent } from './components/ui/config/config.component';
 import { BodyComponent } from './components/ui/body/body.component';
 import { AccessComponent } from './components/container/access/access.component';
 import {FileUploadModule} from 'primeng/fileupload';
+import {AvatarModule} from 'primeng/avatar';
 import {HttpClientModule} from '@angular/common/http';
-import { SharedModule } from '../shared/shared.module';
-import { AuthModule } from '../auth/auth.module';
-
-@NgModule({ 
+import {FieldsetModule} from 'primeng/fieldset';
+import {DividerModule} from 'primeng/divider';
+@NgModule({
   declarations: [DashboardComponent, FooterComponent, LayoutComponent, DashboardComponent, ConfigComponent, BodyComponent, AccessComponent],
   imports: [
     CommonModule,
@@ -23,8 +23,9 @@ import { AuthModule } from '../auth/auth.module';
     FormsModule,
     FileUploadModule,
     HttpClientModule,
-    SharedModule,
-    AuthModule
+    AvatarModule,
+    FieldsetModule,
+    DividerModule
   ]
 })
 export class MainModule { }

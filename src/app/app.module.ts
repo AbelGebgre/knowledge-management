@@ -10,7 +10,6 @@ import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
 import { environment } from '../environments/environment';
 import { BlockUIModule } from 'ng-block-ui';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AuthInterceptor } from './auth/services/auth-interceptor';
 
 @NgModule({
   declarations: [
@@ -25,13 +24,7 @@ import { AuthInterceptor } from './auth/services/auth-interceptor';
     BlockUIModule.forRoot(),
     environment.production ? [] : AkitaNgDevtools.forRoot(),
   ],
-  providers: [
-    { provide: NG_ENTITY_SERVICE_CONFIG, useValue: { baseUrl: environment.apiUrl }},
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true
-    }],
+  providers: [],
   bootstrap: [AppComponent],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

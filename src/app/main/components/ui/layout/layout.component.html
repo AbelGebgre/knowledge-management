@@ -8,16 +8,12 @@
                 <a tabindex="0" style="cursor: pointer;" class="menu-button shadow-none" (click)="mobileView(!mobileMenu)">
                     <i class="pi pi-bars shadow-none"></i>
                 </a>
-                <a tabindex="0" id="logo-link" class="layout-topbar-logo">
-                    <img alt="freya-layout" src="assets/image/logo-freya-single.svg">
-                </a> 
+                <p-avatar label="KM" styleClass="p-mr-2" size="large" shape="circle"></p-avatar> 
             </div>
             <div class="menu-wrapper" [ngClass]="{'layout-sidebar-active': activeSidebar && layout=='sidebar'}" (mouseenter)="activeSidebar=true;" 
             (mouseleave)="activeSidebar=false;">
                 <div class="sidebar-logo">
-                    <a routerLink="/">
-                        <img src="assets/image/logo-freya-single.svg" alt="freya-layout">
-                    </a>
+                    <p-avatar label="KM" styleClass="p-mr-2" size="large" shape="circle"></p-avatar>
                     <a class="sidebar-pin" (click)="pin()">
                         <span class="pin"></span>
                     </a>
@@ -44,15 +40,20 @@
                             </div>
                             <ul *ngIf="menu.collapse" role="menu" [ngClass]="{'d-none': getRouter(menu.routers)}"
                                 routerLinkActive="ng-trigger ng-trigger-children ng-star-inserted ng-animating">
-                                <li *ngFor="let item of menu.item" app-menuitem routerLinkActive="active-menuitem">
+                                <li *ngFor="let item of menu.item; let j = index;" app-menuitem routerLinkActive="active-menuitem">
+                                    <p-divider *ngIf="(item.header && static) || (item.header && activeSidebar && !static)" align="center">
+                                        <span class="p-tag">{{item.header}}</span>
+                                    </p-divider>
+                                    <hr *ngIf="(item.header && !activeSidebar && !static)" class="sidebar-divider">
                                     <a routerlinkactive="active-route" pripple class="p-ripple" tabindex="0" style="cursor: pointer; text-decoration: none;" routerLink="{{item.link}}" >
-                                        <i class="layout-menuitem-icon {{item.icon}}"></i>
+                                        <i class="layout-menuitem-icon pi pi-{{item.icon}}"></i>
                                         <span class="layout-menuitem-text">{{item.label}}</span>
                                         <span class="p-ink"></span>
                                     </a>
                                     <div class="layout-menu-tooltip"><div class="layout-menu-tooltip-arrow"></div>
                                         <div class="layout-menu-tooltip-text">{{item.label}}</div>
                                     </div>
+                                    <hr [hidden]='!item.last' class="sidebar-divider">
                                 </li>
                             </ul>
                         </li>
@@ -78,42 +79,15 @@
                             </div>
                         </ul>
                     </li>
-                    <li class="topbar-item user-profile">
-                        <a style="cursor: pointer;"><img src="assets/image/avatar-profilemenu.png" alt="freya-layout">
-                        </a>
-                        <ul class="fadeInDown">
-                            <li><a style="cursor: pointer;"><span>Profile</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a style="cursor: pointer;">
-                                <span>Settings</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a style="cursor: pointer;">
-                                <span>Messages</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a style="cursor: pointer;">
-                                <span>Notifications</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
                 </ul>
             </div>
         </div>
     </div> 
-    <app-config  (onlayout)="layoutChange($event)"
-                (onmenuTheme)="menuThemeChange($event)"
-                (ontopbarTheme)="topbarThemeChange($event)"
-                (oncolorScheme)="colorSchemeChange($event)"
-                [static]="static" ></app-config>
     <div class="layout-main" (click)="search=false; onclick($event,'body')">
         <div class="layout-content">
-            <router-outlet></router-outlet>
+            <div class="card">
+                <router-outlet></router-outlet>
+            </div>
         </div>
         <app-footer></app-footer>
         <div class="layout-mask modal-in"></div>

@@ -5,3 +5,15 @@
   -o-transition-delay: 5s;
   -webkit-transition-delay: 5s;
 }
+.menu-category {
+  display: block;
+  color: inherit;
+  font-weight: 600;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  padding: 1.5rem 0 1rem;
+  font-size: 0.857rem;
+  text-transform: uppercase;
+  border-top: 1px solid var(#dee2e6);
+}

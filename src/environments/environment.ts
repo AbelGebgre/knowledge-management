@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  sessionKey:'ss_key',
-  apiUrl:1,
+  sessionKey: 'ss_key',
+  apiUrl: 1,
 };
 
 /*
